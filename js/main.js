@@ -51,4 +51,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    // 4. Global Search Activation
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBar = document.getElementById('header-search-bar');
+    const searchInput = document.getElementById('header-search-input');
+
+    if (searchToggle && searchBar) {
+        searchToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchBar.classList.toggle('active');
+            if (searchBar.classList.contains('active')) {
+                searchInput.focus();
+            }
+        });
+
+        // Fermer la recherche si on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
+                searchBar.classList.remove('active');
+            }
+        });
+
+        // Gérer la recherche
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                const query = encodeURIComponent(searchInput.value.trim());
+                window.location.href = `boutique.html?q=${query}`;
+            }
+        });
+    }
+
+    // 5. Initialisation du Panier sur toutes les pages
+    if (window.orcaCart) {
+        window.orcaCart.updateCartCount();
+    }
 });

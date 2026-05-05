@@ -21,6 +21,14 @@ let filters = {
 // Initialisation
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Détection recherche URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    if (query) {
+        filters.search = query;
+        document.getElementById('search-input').value = query;
+    }
+
     loadProducts();
     setupEventListeners();
 });
@@ -349,7 +357,10 @@ function createCardHTML(p) {
         <div class="product-card" data-cb="${p.cb}">
             ${stockBadge}
             <div class="card-img">
-                <img src="${p.image}" alt="${p.nom}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'card-img-placeholder\\'>Pas d\\'image</div>';">
+                <img src="assets/produits/${p.cb}.jpg" alt="${p.nom}" loading="lazy" onerror="this.onerror=null; this.src='assets/images/placeholder.png';">
+                <button class="add-to-cart-btn-small add-to-cart-btn" data-cb="${p.cb}" onclick="event.stopPropagation();" title="Ajouter au panier">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                </button>
             </div>
             <div class="card-body">
                 <div class="card-secteur">${p.secteur || 'Divers'}</div>
@@ -447,6 +458,19 @@ function openModal(p) {
         prixNormal.className = 'prix-normal';
         prixPromo.style.display = 'none';
     }
+
+    // Bouton Ajout Panier Modal
+    const modalFooter = document.querySelector('.modal-info-side');
+    let cartBtn = document.getElementById('modal-add-to-cart');
+    if (!cartBtn) {
+        cartBtn = document.createElement('button');
+        cartBtn.id = 'modal-add-to-cart';
+        cartBtn.className = 'checkout-btn add-to-cart-btn';
+        cartBtn.style.marginTop = '2rem';
+        modalFooter.appendChild(cartBtn);
+    }
+    cartBtn.textContent = 'Ajouter à ma sélection';
+    cartBtn.dataset.cb = p.cb;
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';

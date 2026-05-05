@@ -28,6 +28,13 @@
                 </ul>
             </nav>
             <div class="header-icons">
+                <button id="search-toggle" aria-label="Recherche">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </button>
+                <button id="cart-toggle" class="cart-icon-wrapper" aria-label="Panier">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-count" style="display: none;">0</span>
+                </button>
                 <button aria-label="Menu" class="menu-toggle"><span></span><span></span><span></span></button>
             </div>
         </div>
@@ -102,6 +109,26 @@
         </main>
     </div>
 
+    <!-- Panier Latéral (Drawer) -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2>Votre Sélection</h2>
+            <button id="close-cart" class="close-cart">&times;</button>
+        </div>
+        <div class="cart-body" id="cart-items-list">
+            <!-- Articles injectés par JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total Estimé</span>
+                <span id="cart-total">0 FCFA</span>
+            </div>
+            <button class="checkout-btn">Finaliser ma liste</button>
+            <p style="font-size: 0.75rem; color: #999; margin-top: 1rem; text-align: center;">* Prix indicatifs à confirmer en magasin.</p>
+        </div>
+    </div>
+
     <!-- Modal Fiche Produit -->
     <div id="product-modal" class="modal-overlay" style="display:none">
         <div class="modal-content">
@@ -141,13 +168,20 @@
     </div>
 
     <!-- Footer compact -->
-    <footer class="main-footer compact-footer">
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <img src="assets/images/logo.png" alt="ORCA" class="footer-logo">
+                <p class="footer-slogan">L'art de vivre</p>
+            </div>
+        </div>
         <div class="footer-bottom container">
             <p>&copy; 2026 ORCA Congo. Tous droits réservés. | <a href="index.html">Retour à l'accueil</a></p>
         </div>
     </footer>
 
     <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
     <script src="js/boutique.js"></script>
 </body>
 </html>
