@@ -155,7 +155,7 @@ class OrcaChatbot {
             this.sendBotTypingThenMessage("Les livraisons se font à partir d'un achat de 500 000 Fr. CFA. 🚚<br><br>De plus, le montage des meubles se fait gratuitement au moment de la livraison par nos équipes spécialisées.");
         } 
         else if (normalizedInput.includes('horaire') || normalizedInput.includes('heure') || normalizedInput.includes('ouvert') || normalizedInput.includes('ferme')) {
-            this.sendBotTypingThenMessage("Nos magasins sont ouverts du Lundi au Samedi, de 9h00 à 19h00 sans interruption. 🕒");
+            this.sendBotTypingThenMessage("Nos magasins sont ouverts du Lundi au Samedi, de 9h30 à 18h30 sans interruption. 🕒");
         }
         else if (normalizedInput.includes('adresse') || normalizedInput.includes('localisation') || normalizedInput.includes('ou etes vous') || normalizedInput.includes('magasin')) {
             this.sendBotTypingThenMessage("📍 **Brazzaville** : Rond point de la gare<br>📍 **Pointe Noire** : Av. Marien Ngouabi × Av. Simon Kimbango");
