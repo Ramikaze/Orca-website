@@ -819,7 +819,7 @@ a {
     margin-bottom: 1.5rem;
 }
 
-.checkout-btn, .add-to-cart-btn {
+.checkout-btn, .add-to-cart-large {
     width: 100%;
     padding: 1.2rem;
     background: var(--color-accent);
@@ -832,7 +832,7 @@ a {
     transition: var(--transition-fast);
 }
 
-.checkout-btn:hover, .add-to-cart-btn:hover {
+.checkout-btn:hover, .add-to-cart-large:hover {
     background: #333;
 }
 

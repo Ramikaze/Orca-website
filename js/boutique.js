@@ -504,7 +504,7 @@ function openModal(p) {
     if (!cartBtn) {
         cartBtn = document.createElement('button');
         cartBtn.id = 'modal-add-to-cart';
-        cartBtn.className = 'add-to-cart-btn'; // Retrait de checkout-btn qui ouvrait le PDF
+        cartBtn.className = 'add-to-cart-large'; // Changement vers -large pour éviter le conflit avec le petit bouton
         cartBtn.style.marginTop = '2rem';
         modalFooter.appendChild(cartBtn);
     }
