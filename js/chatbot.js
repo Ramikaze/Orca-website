@@ -140,29 +140,58 @@ class OrcaChatbot {
             <button class="quick-reply-btn" data-keyword="livraison">🚚 Livraison & Montage</button>
             <button class="quick-reply-btn" data-keyword="horaires">🕒 Horaires</button>
             <button class="quick-reply-btn" data-keyword="adresses">📍 Adresses</button>
+            <button class="quick-reply-btn" data-keyword="salon">🛋️ Chercher un meuble</button>
+            <button class="quick-reply-btn" data-keyword="contact">📞 Nous contacter</button>
         `;
         this.scrollToBottom();
     }
 
     processUserInput(input) {
-        // Logique de mots-clés simple
-        if (input.includes('livraison') || input.includes('montage') || input.includes('livrer') || input.includes('monter')) {
+        // Normalisation (enlever les accents et mettre en minuscules)
+        const normalizedInput = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+        // Logique de mots-clés étendue
+        if (normalizedInput.includes('livraison') || normalizedInput.includes('montage') || normalizedInput.includes('livrer') || normalizedInput.includes('monter')) {
             this.sendBotTypingThenMessage("Les livraisons se font à partir d'un achat de 500 000 Fr. CFA. 🚚<br><br>De plus, le montage des meubles se fait gratuitement au moment de la livraison par nos équipes spécialisées.");
         } 
-        else if (input.includes('horaire') || input.includes('heure') || input.includes('ouvert') || input.includes('ferme')) {
+        else if (normalizedInput.includes('horaire') || normalizedInput.includes('heure') || normalizedInput.includes('ouvert') || normalizedInput.includes('ferme')) {
             this.sendBotTypingThenMessage("Nos magasins sont ouverts du Lundi au Samedi, de 9h00 à 19h00 sans interruption. 🕒");
         }
-        else if (input.includes('adresse') || input.includes('localisation') || input.includes('où') || input.includes('ou') || input.includes('magasin')) {
+        else if (normalizedInput.includes('adresse') || normalizedInput.includes('localisation') || normalizedInput.includes('ou etes vous') || normalizedInput.includes('magasin')) {
             this.sendBotTypingThenMessage("📍 **Brazzaville** : Rond point de la gare<br>📍 **Pointe Noire** : Av. Marien Ngouabi × Av. Simon Kimbango");
         }
-        else if (input.includes('devis') || input.includes('panier') || input.includes('commander') || input.includes('prix')) {
+        else if (normalizedInput.includes('devis') || normalizedInput.includes('panier') || normalizedInput.includes('commander') || normalizedInput.includes('prix')) {
             this.sendBotTypingThenMessage("Pour commander ou connaître les prix, vous pouvez ajouter vos articles à votre sélection en cliquant sur l'icône de panier, puis générer un devis automatiquement depuis la page Boutique ! 📄");
         }
-        else if (input.includes('bonjour') || input.includes('salut') || input.includes('coucou')) {
+        else if (normalizedInput.includes('salon') || normalizedInput.includes('canape') || normalizedInput.includes('fauteuil') || normalizedInput.includes('sofa')) {
+            this.sendBotTypingThenMessage("Vous cherchez un salon ? 🛋️ Rendez-vous dans la rubrique 'Boutique' et tapez 'Salon' ou 'Canapé' dans la barre de recherche. Vous y découvrirez tous nos modèles !");
+        }
+        else if (normalizedInput.includes('chambre') || normalizedInput.includes('lit') || normalizedInput.includes('matelas') || normalizedInput.includes('armoire')) {
+            this.sendBotTypingThenMessage("Pour aménager votre chambre 🛏️, visitez notre page 'Boutique' et filtrez par la catégorie 'Chambre à coucher'. Nous avons un large choix de lits et matelas !");
+        }
+        else if (normalizedInput.includes('table') || normalizedInput.includes('salle a manger') || normalizedInput.includes('chaise')) {
+            this.sendBotTypingThenMessage("Nos ensembles de salle à manger 🪑 sont magnifiques ! Vous pouvez les trouver dans la 'Boutique' en cherchant 'Salle à manger' ou 'Chaise'.");
+        }
+        else if (normalizedInput.includes('deco') || normalizedInput.includes('tapis') || normalizedInput.includes('miroir') || normalizedInput.includes('lampe')) {
+            this.sendBotTypingThenMessage("Nous avons un immense rayon décoration ✨ (tapis, luminaires, miroirs...). Allez faire un tour dans la Boutique pour voir nos articles !");
+        }
+        else if (normalizedInput.includes('contact') || normalizedInput.includes('telephone') || normalizedInput.includes('appeler') || normalizedInput.includes('numero')) {
+            this.sendBotTypingThenMessage("Vous pouvez nous joindre par téléphone :<br>📞 Brazzaville : 06 903 49 46<br>📞 Pointe-Noire : 06 527 58 41");
+        }
+        else if (normalizedInput.includes('paiement') || normalizedInput.includes('payer') || normalizedInput.includes('carte') || normalizedInput.includes('espece')) {
+            this.sendBotTypingThenMessage("Nous acceptons les paiements en espèces, par carte bancaire, et par virement bancaire directement en magasin. 💳");
+        }
+        else if (normalizedInput.includes('garantie') || normalizedInput.includes('retour') || normalizedInput.includes('sav') || normalizedInput.includes('casse')) {
+            this.sendBotTypingThenMessage("Nos produits bénéficient d'une garantie selon leur catégorie. Pour toute question de Service Après-Vente (SAV), veuillez vous rapprocher de votre magasin muni de votre devis ou facture. 🛠️");
+        }
+        else if (normalizedInput.includes('merci') || normalizedInput.includes('super') || normalizedInput.includes('top') || normalizedInput.includes('genial')) {
+            this.sendBotTypingThenMessage("C'est un plaisir ! 😊 Avez-vous besoin d'autre chose ?");
+        }
+        else if (normalizedInput.includes('bonjour') || normalizedInput.includes('salut') || normalizedInput.includes('coucou')) {
             this.sendBotTypingThenMessage("Bonjour ! Ravi de vous voir. Comment puis-je vous orienter ?");
         }
         else {
-            this.sendBotTypingThenMessage("Je ne suis pas sûr de comprendre. 😅<br>Je suis un robot en apprentissage. Vous pouvez utiliser les boutons ci-dessous pour trouver ce que vous cherchez !");
+            this.sendBotTypingThenMessage("Je ne suis pas sûr de comprendre. 😅<br>Je suis un robot en apprentissage. Vous pouvez utiliser les boutons ci-dessous ou me demander des infos sur nos **horaires**, la **livraison** ou nos **meubles** !");
         }
     }
 }

@@ -45,6 +45,14 @@ async function loadProducts() {
             allProducts = window.ORCA_PRODUCTS;
             applyFiltersAndRender();
             buildSecteurPills();
+
+            // OUVIR LA MODALE SI ON VIENT D'UNE RECHERCHE (paramètre cb)
+            const urlParams = new URLSearchParams(window.location.search);
+            const cbParam = urlParams.get('cb');
+            if (cbParam) {
+                // Léger délai pour s'assurer que le DOM est prêt
+                setTimeout(() => window.openModalById(cbParam), 100);
+            }
         } else {
             throw new Error("Données introuvables.");
         }
