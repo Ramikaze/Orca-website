@@ -353,12 +353,11 @@ body.boutique-page {
 .products-grid {
     display: grid;
     /* Plus grand nombre de colonnes puisqu'on a toute la largeur */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
 }
 
 /* Carte Produit premium */
-.product-card {
     background: white;
     border-radius: 15px;
     cursor: pointer;
@@ -367,8 +366,6 @@ body.boutique-page {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     border: 1px solid rgba(0,0,0,0.02);
-    opacity: 0;
-    transform: translateY(30px);
 }
 
 .product-card.reveal-active {
@@ -450,10 +447,10 @@ body.boutique-page {
 }
 
 .card-nom {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: var(--color-accent);
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -469,7 +466,7 @@ body.boutique-page {
 }
 
 .prix-actuel {
-    font-size: 1.05rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--color-accent);
 }

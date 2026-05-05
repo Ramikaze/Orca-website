@@ -4,7 +4,7 @@
 let allProducts = [];
 let filteredProducts = [];
 let currentPage = 1;
-const ITEMS_PER_PAGE = 30; // On peut afficher plus d'items avec le layout pleine largeur
+const ITEMS_PER_PAGE = 2000; // Affichage complet des résultats sans pagination
 
 // Filtres actifs
 let filters = {
@@ -348,19 +348,11 @@ function renderPage() {
         return;
     }
 
-    // Calcul de la pagination
-    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    const slice = filteredProducts.slice(start, start + ITEMS_PER_PAGE);
-
-    // Rendu des cartes avec délai décalé
+    // Rendu des cartes sans délai
     grid.innerHTML = slice.map((p, index) => createCardHTML(p, index)).join('');
 
-    // Rendu pagination
-    renderPagination(totalPages);
-
-    // Initialisation des animations de révélation
-    initRevealAnimation();
+    // Pagination masquée si tout est sur une page
+    pagination.innerHTML = '';
 }
 
 function initRevealAnimation() {
