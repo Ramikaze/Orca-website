@@ -44,8 +44,9 @@ class OrcaCart {
                         origin: { y: 0.5 },
                         colors: ['#00A650', '#FBDE02', '#ED1C24'],
                         zIndex: 10000,
-                        startVelocity: 60,
-                        gravity: 1.2,
+                        startVelocity: 45,
+                        gravity: 2.5,
+                        ticks: 120,
                         disableForReducedMotion: true
                     });
                 }
