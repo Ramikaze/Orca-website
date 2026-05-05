@@ -141,7 +141,8 @@ class OrcaCart {
             <head>
                 <title>Ma Sélection ORCA - ${date}</title>
                 <style>
-                    body { font-family: 'Inter', sans-serif; color: #111; padding: 40px; line-height: 1.6; }
+                    @page { size: auto; margin: 0mm; }
+                    body { font-family: 'Inter', sans-serif; color: #111; padding: 2cm; line-height: 1.6; }
                     .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid #111; padding-bottom: 20px; margin-bottom: 40px; }
                     .logo { height: 80px; }
                     .quote-info { text-align: right; }
