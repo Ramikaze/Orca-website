@@ -612,25 +612,25 @@ a {
 }
 
 .footer-logo {
-    height: 60px; /* Plus petit pour aligner avec les titres H4 */
-    margin-bottom: 1rem;
+    height: 80px; /* Plus grand comme demandé */
+    margin-bottom: 1.2rem;
     filter: none;
     display: block;
 }
 
 .footer-slogan {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* Plus grand */
     font-style: italic;
     color: var(--color-accent);
     margin: 0;
-    line-height: 1;
+    line-height: 1.1;
 }
 
-.footer-links h4, .footer-contact h4 {
+.footer-links h4, .footer-contact h4, .shop-block h4 {
     color: var(--color-accent);
     margin-bottom: 1.5rem;
-    margin-top: 0.5rem; /* Ajustement pour aligner avec le logo */
+    margin-top: 1rem; /* Alignement parfait avec le haut du logo */
     font-family: var(--font-body);
     text-transform: uppercase;
     letter-spacing: 1px;
