@@ -666,7 +666,7 @@ a {
 }
 
 .footer-contact h4 {
-    text-align: right;
+    text-align: left; /* Aligné avec l'adresse en dessous */
 }
 
 .footer-contact .shop-info {
@@ -678,8 +678,9 @@ a {
 }
 
 .shop-block {
-    font-size: 1.1rem; /* Texte adresses plus grand */
+    font-size: 1.1rem;
     line-height: 1.6;
+    text-align: left; /* Forcer l'alignement à gauche pour tout le bloc */
 }
 
 .shop-block h4 {
