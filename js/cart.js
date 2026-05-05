@@ -39,10 +39,13 @@ class OrcaCart {
                 // Lancer l'effet "WAW" confettis
                 if (window.confetti) {
                     confetti({
-                        particleCount: 150,
-                        spread: 100,
+                        particleCount: 200,
+                        spread: 120,
                         origin: { y: 0.5 },
                         colors: ['#00A650', '#FBDE02', '#ED1C24'],
+                        zIndex: 10000,
+                        startVelocity: 60,
+                        gravity: 1.2,
                         disableForReducedMotion: true
                     });
                 }
