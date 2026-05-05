@@ -42,93 +42,85 @@ html {
 }
 
 /* ==========================================================================
-   Intro Animation (Orbes Modernes & Verre Dépoli)
+   Intro Animation (Banderole Congolaise)
    ========================================================================== */
 #intro-animation {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background-color: #FAFAF9; /* Fond clair très léger */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    animation: fadeOutIntro 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 3.2s;
+    animation: fadeOutIntro 0.8s ease forwards 3.2s;
     pointer-events: none;
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    /* filter: blur(50px); SUPPRIMÉ : cause des ralentissements sévères sur mobile */
-    opacity: 0;
-    animation: floatOrb 3.5s ease-in-out forwards;
-    z-index: 1;
-    transform: translateZ(0);
-    will-change: transform, opacity;
-}
-
-.orb-green {
-    width: 60vw; height: 60vw;
-    background: radial-gradient(circle, rgba(0,166,80,0.8) 0%, rgba(0,166,80,0) 70%); /* Remplace le blur physique */
-    top: -15%; left: -15%;
-    animation-delay: 0.1s;
-}
-
-.orb-yellow {
-    width: 55vw; height: 55vw;
-    background: radial-gradient(circle, rgba(251,222,2,0.8) 0%, rgba(251,222,2,0) 70%);
-    bottom: -25%; right: -15%;
-    animation-delay: 0.3s;
-}
-
-.orb-red {
-    width: 50vw; height: 50vw;
-    background: radial-gradient(circle, rgba(237,28,36,0.8) 0%, rgba(237,28,36,0) 70%);
-    top: 35%; left: 25%;
-    animation-delay: 0.5s;
-}
-
-.intro-glass {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    /* backdrop-filter: blur(30px); SUPPRIMÉ : cause de freeze navigateur */
-    background: rgba(250, 250, 249, 0.4); /* Voile clair ultra léger en mémoire */
-    z-index: 2;
-    opacity: 0;
-    animation: fadeInGlass 1s ease forwards 0.2s;
 }
 
 .intro-logo-container {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    animation: revealLogo 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 1s;
+    transform: scale(0.9);
+    animation: revealLogo 1s cubic-bezier(0.25, 1, 0.5, 1) forwards 2.0s;
 }
 
 .intro-logo {
     max-width: 450px;
-    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
 }
 
-@keyframes floatOrb {
-    0% { transform: scale(0.5) translate(0, 0); opacity: 0; }
-    30% { opacity: 0.8; }
-    100% { transform: scale(1.1) translate(5%, 5%); opacity: 1; }
+.congo-flag-sweeper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+    /* Transformation initiale pour placer les bandes hors de l'écran (à gauche et en biais) */
+    transform-origin: center;
 }
 
-@keyframes fadeInGlass {
-    to { opacity: 1; }
+.stripe {
+    flex: 1;
+    width: 250%; /* Très large pour couvrir lors de la rotation */
+    transform: translateX(-100%) rotate(-15deg);
+    transform-origin: left center;
+}
+
+.stripe.green {
+    background-color: #009543; /* Vert drapeau Congo */
+    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.2s;
+}
+
+.stripe.yellow {
+    background-color: #FBDE4A; /* Jaune drapeau Congo */
+    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.4s;
+}
+
+.stripe.red {
+    background-color: #DC241F; /* Rouge drapeau Congo */
+    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.6s;
+}
+
+@keyframes sweepStripe {
+    0% { transform: translateX(-100%) rotate(-15deg); }
+    50% { transform: translateX(-20%) rotate(-15deg); }
+    100% { transform: translateX(100%) rotate(-15deg); }
 }
 
 @keyframes revealLogo {
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes fadeOutIntro {
-    0% { opacity: 1; visibility: visible; }
-    100% { opacity: 0; visibility: hidden; }
+    to { opacity: 0; visibility: hidden; }
 }
 
 /* ==========================================================================
