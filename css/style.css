@@ -474,9 +474,18 @@ a {
 }
 
 .footer-logo {
-    height: 80px;
-    margin-bottom: 1.5rem;
-    filter: brightness(0) invert(1);
+    height: 120px; /* Logo agrandi */
+    margin-bottom: 1rem;
+    filter: none; /* Retrait du filtre pour éviter l'effet de blob blanc */
+}
+
+.footer-slogan {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: white;
+    opacity: 0.9;
+    margin-top: 0;
 }
 
 .footer-links h4, .footer-contact h4 {
