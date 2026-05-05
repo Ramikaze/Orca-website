@@ -321,23 +321,31 @@ function renderPage() {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     const slice = filteredProducts.slice(start, start + ITEMS_PER_PAGE);
 
-    // Rendu des cartes
-    grid.innerHTML = slice.map(p => createCardHTML(p)).join('');
+    // Rendu des cartes avec délai décalé
+    grid.innerHTML = slice.map((p, index) => createCardHTML(p, index)).join('');
 
     // Rendu pagination
     renderPagination(totalPages);
 
-    // Ajout des listeners sur les cartes
-    grid.querySelectorAll('.product-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const cb = card.dataset.cb;
-            const p = allProducts.find(x => x.cb === cb);
-            if (p) openModal(p);
-        });
-    });
+    // Initialisation des animations de révélation
+    initRevealAnimation();
 }
 
-function createCardHTML(p) {
+function initRevealAnimation() {
+    const cards = document.querySelectorAll('.product-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+}
+
+function createCardHTML(p, index) {
     const stockBadge = p.stock_total > 0 
         ? '<span class="card-stock-badge stock-dispo">En stock</span>'
         : '<span class="card-stock-badge stock-rupture">Rupture</span>';
@@ -347,19 +355,21 @@ function createCardHTML(p) {
     
     if (p.prix_promo > 0) {
         priceHTML = `
-            <span class="prix-actuel">${formatPrice(p.prix_promo)}</span>
+            <span class="prix-actuel" style="color: #DC241F;">${formatPrice(p.prix_promo)}</span>
             <span class="prix-barre">${formatPrice(p.prix)}</span>
             <span class="badge-promo">PROMO</span>
         `;
     }
 
     return `
-        <div class="product-card" data-cb="${p.cb}">
+        <div class="product-card" data-cb="${p.cb}" onclick="openModalById('${p.cb}')" style="transition-delay: ${index * 60}ms">
             ${stockBadge}
             <div class="card-img">
                 <img src="assets/produits/${p.cb}.jpg" alt="${p.nom}" loading="lazy" onerror="this.onerror=null; this.src='assets/images/placeholder.png';">
                 <button class="add-to-cart-btn-small add-to-cart-btn" data-cb="${p.cb}" onclick="event.stopPropagation(); window.orcaCart.addItem('${p.cb}');" title="Ajouter au panier">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5v14"/>
+                    </svg>
                 </button>
             </div>
             <div class="card-body">
@@ -370,6 +380,11 @@ function createCardHTML(p) {
         </div>
     `;
 }
+
+window.openModalById = function(cb) {
+    const p = allProducts.find(x => x.cb === cb);
+    if (p) openModal(p);
+};
 
 // ============================================================
 // Pagination Visuelle

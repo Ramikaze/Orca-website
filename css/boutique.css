@@ -6,27 +6,47 @@ body.boutique-page {
     background-color: var(--color-bg);
 }
 
-/* --- Bannière --- */
+/* --- Bannière Immersive --- */
 .boutique-banner {
-    background: var(--color-light-bg); /* Couleur grège premium */
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    position: relative;
     color: var(--color-accent);
     text-align: center;
-    padding: 7rem 2rem 1.5rem; /* Bande beaucoup plus fine */
+    padding: 10rem 2rem 4rem;
     margin-top: 0;
-    border-bottom: 1px solid #E8E6E3;
+    overflow: hidden;
+}
+
+.boutique-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(197, 161, 122, 0.1) 0%, transparent 70%);
+    z-index: 0;
 }
 
 .boutique-banner h1 {
     font-family: var(--font-heading);
     color: var(--color-accent);
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 0.5rem;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 1;
 }
 
 .boutique-banner p {
     color: var(--color-text-light);
-    font-size: 1.1rem;
-    margin: 0;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+    opacity: 0.8;
 }
 
 /* ============================================================
@@ -34,12 +54,13 @@ body.boutique-page {
    ============================================================ */
 .top-toolbar-section {
     position: sticky;
-    top: 107px; /* Hauteur du header réduit (75px logo + padding) */
+    top: 107px;
     z-index: 90;
-    background: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    border-bottom: 1px solid #E8E6E3;
-    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1.5rem 0;
+    transition: all 0.3s ease;
 }
 
 .top-toolbar {
@@ -171,36 +192,39 @@ body.boutique-page {
 .pill-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 1rem;
-    background: var(--color-bg);
-    border: 1px solid #E0DEDB;
-    border-radius: 30px;
+    gap: 0.6rem;
+    padding: 0.6rem 1.4rem;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 40px;
     font-family: var(--font-body);
-    font-size: 0.8rem;
-    color: var(--color-text);
+    font-size: 0.85rem;
+    color: var(--color-accent);
     cursor: pointer;
     white-space: nowrap;
-    transition: all 0.2s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }
 
 .pill-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     border-color: var(--color-accent);
-    background: white;
 }
 
 .pill-btn.active {
     background: var(--color-accent);
     color: white;
-    border-color: var(--color-accent);
+    box-shadow: 0 10px 25px rgba(26, 26, 26, 0.2);
 }
 
 .pill-count {
     font-size: 0.7rem;
-    background: #E0DEDB;
+    background: #f0f0f0;
     color: var(--color-text-light);
-    padding: 2px 6px;
+    padding: 2px 8px;
     border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 .pill-btn.active .pill-count {
@@ -315,38 +339,67 @@ body.boutique-page {
 /* Carte Produit premium */
 .product-card {
     background: white;
-    border: none; /* Suppression de la bordure dure */
-    border-radius: 8px; /* Coins arrondis */
+    border-radius: 15px;
     cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03); /* Ombre douce */
-    padding-bottom: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.product-card.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
 }
 
 .product-card .card-img {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    background: var(--color-light-bg);
+    background: #fdfbfb;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: 8px 8px 0 0;
+    position: relative;
+}
+
+.card-img::after {
+    content: 'DÉTAILS';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: rgba(255,255,255,0.9);
+    padding: 0.8rem 1.5rem;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 3;
+    color: var(--color-accent);
+}
+
+.product-card:hover .card-img::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .product-card:hover .card-img img {
