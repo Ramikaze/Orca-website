@@ -35,6 +35,17 @@ class OrcaCart {
             const checkoutBtn = e.target.closest('.checkout-btn');
             if (checkoutBtn) {
                 this.generateQuotation();
+                
+                // Lancer l'effet "WAW" confettis
+                if (window.confetti) {
+                    confetti({
+                        particleCount: 150,
+                        spread: 100,
+                        origin: { y: 0.5 },
+                        colors: ['#00A650', '#FBDE02', '#ED1C24'],
+                        disableForReducedMotion: true
+                    });
+                }
             }
         });
     }
