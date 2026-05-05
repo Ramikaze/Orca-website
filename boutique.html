@@ -131,21 +131,16 @@
             <h2>Votre Sélection</h2>
             <button id="close-cart" class="close-cart">&times;</button>
         </div>
-        <div id="cart-items-list" class="cart-items-list"></div>
+        <div class="cart-body" id="cart-items-list">
+            <!-- Articles injectés par JS -->
+        </div>
         <div class="cart-footer">
             <div class="cart-total-row">
                 <span>Total Estimé</span>
                 <span id="cart-total">0 FCFA</span>
             </div>
             <button class="checkout-btn">Finaliser ma liste</button>
-        </div>
-    </div>
-
-    <!-- Overlay Devis (Plein écran) -->
-    <div id="quotation-overlay" class="quotation-overlay">
-        <div class="quotation-modal">
-            <button id="close-quotation" class="close-quotation">&times;</button>
-            <div id="quotation-content" class="quotation-content"></div>
+            <p style="font-size: 0.75rem; color: #999; margin-top: 1rem; text-align: center;">* Prix indicatifs à confirmer en magasin.</p>
         </div>
     </div>
 
