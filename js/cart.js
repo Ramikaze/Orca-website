@@ -12,14 +12,8 @@ class OrcaCart {
     }
 
     setupEventListeners() {
-        // Écouter les clics sur les boutons "Ajouter au panier"
+        // Gestion globale de l'UI (Ouvrir/Fermer)
         document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
-                const btn = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
-                const productCb = btn.dataset.cb;
-                this.addItem(productCb);
-            }
-            
             // Ouvrir le panier au clic sur l'icône du header
             if (e.target.closest('#cart-toggle')) {
                 this.openCart();
