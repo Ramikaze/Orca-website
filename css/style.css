@@ -274,14 +274,18 @@ a {
 .main-nav ul {
     list-style: none;
     display: flex;
-    gap: 3rem;
+    gap: 3.5rem; /* Plus d'espace entre les liens */
 }
 
-.main-nav a {
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.main-nav ul li a {
+    text-decoration: none;
     color: var(--color-accent);
+    font-weight: 500;
+    font-size: 1.15rem; /* Plus grand pour plus de présence */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: var(--transition-fast);
+    padding: 0.5rem 0;
     position: relative;
 }
 
@@ -668,20 +672,18 @@ a {
 .footer-contact .shop-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    text-align: left; /* Les infos boutiques restent alignées à gauche dans leurs colonnes */
+    gap: 4rem; /* Plus d'espace entre les villes */
+    text-align: left;
+    margin-top: 0; /* Suppression de la marge pour aligner les titres */
 }
 
 .shop-block {
-    font-size: 1rem; /* Texte adresses plus gros */
-    line-height: 1.5;
+    font-size: 1.1rem; /* Texte adresses plus grand */
+    line-height: 1.6;
 }
 
-.shop-block strong {
-    color: var(--color-text);
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+.shop-block h4 {
+    margin-bottom: 1rem !important;
 }
 
 .footer-links a:hover {
