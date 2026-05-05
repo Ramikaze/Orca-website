@@ -32,7 +32,8 @@ class OrcaCart {
             }
             
             // Finaliser la liste (Devis)
-            if (e.target.classList.contains('checkout-btn')) {
+            const checkoutBtn = e.target.closest('.checkout-btn');
+            if (checkoutBtn) {
                 this.generateQuotation();
             }
         });
@@ -134,6 +135,14 @@ class OrcaCart {
 
         const overlay = document.getElementById('quotation-overlay');
         const content = document.getElementById('quotation-content');
+        
+        if (!overlay || !content) {
+            console.error("Éléments de devis manquants dans le HTML.");
+            // Fallback : au cas où l'overlay est absent, on peut tenter l'ancienne méthode ?
+            // Mais ici on va juste avertir.
+            return;
+        }
+
         const total = this.items.reduce((sum, item) => sum + item.prix * item.quantity, 0);
         const date = new Date().toLocaleDateString('fr-FR');
 
@@ -198,10 +207,13 @@ class OrcaCart {
         document.body.style.overflow = 'hidden';
 
         // Event listener pour fermer
-        document.getElementById('close-quotation').onclick = () => {
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        };
+        const closeBtn = document.getElementById('close-quotation');
+        if (closeBtn) {
+            closeBtn.onclick = () => {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+        }
         
         // Fermer au clic sur l'overlay
         overlay.onclick = (e) => {
