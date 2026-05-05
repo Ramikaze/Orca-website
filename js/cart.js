@@ -181,7 +181,9 @@ class OrcaCart {
 
                 <div class="quote-disclaimer">
                     <strong>Note importante :</strong> Ce document facilite l'établissement d'un devis officiel en magasin. 
-                    Prix et stocks indicatifs à confirmer par un conseiller ORCA.
+                    Prix et stocks indicatifs à confirmer par un conseiller ORCA. 
+                    <br><br>
+                    <em>Présentez ce document à un vendeur pour trouver rapidement vos articles.</em>
                 </div>
 
                 <div class="quote-actions no-print">
