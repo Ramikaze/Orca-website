@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wait for the intro animation to finish before revealing the hero section
     setTimeout(() => {
         reveal();
-    }, 4500); // Intro takes roughly 4.5s
+    }, 3200); // L'intro prend désormais environ 3.2s
     
     // Check elements on scroll
     window.addEventListener('scroll', reveal);

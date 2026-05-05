@@ -39,9 +39,14 @@
                 </ul>
             </nav>
             <div class="header-icons">
-                <button id="search-toggle" aria-label="Recherche">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                </button>
+                <div class="search-container">
+                    <button id="search-toggle" aria-label="Recherche">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+                    <div id="header-search-bar" class="header-search-bar">
+                        <input type="text" id="header-search-input" placeholder="Rechercher un article...">
+                    </div>
+                </div>
                 <button id="cart-toggle" class="cart-icon-wrapper" aria-label="Panier">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     <span class="cart-count" style="display: none;">0</span>
@@ -158,18 +163,19 @@
             </div>
             <div class="footer-contact">
                 <h4>Nos Boutiques</h4>
-                <div style="margin-bottom: 1.5rem;">
-                    <strong>Orca Deco Brazzaville</strong><br>
-                    Rond point de la gare<br>
-                    Brazzaville - République du Congo<br>
-                    Tél : 00242 06 903 49 46
+                <div class="shop-info">
+                    <div class="shop-block">
+                        <strong>Brazzaville</strong>
+                        Rond point de la gare<br>
+                        Tél : 06 903 49 46
+                    </div>
+                    <div class="shop-block">
+                        <strong>Pointe Noire</strong>
+                        Av. Marien Ngouabi<br>
+                        Tél : 06 527 58 41
+                    </div>
                 </div>
-                <div>
-                    <strong>Orca Deco Pointe Noire</strong><br>
-                    Av. Marien Ngouabi × Av. Simon Kimbango<br>
-                    Pointe Noire - République du Congo<br>
-                    Tél : 00242 06 527 58 41
-                </div>
+                <p style="margin-top: 1rem;">Email : contact@orca.cg</p>
             </div>
         </div>
         <div class="footer-bottom container">
