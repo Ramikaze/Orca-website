@@ -64,6 +64,8 @@ html {
     opacity: 0;
     animation: floatOrb 3.5s ease-in-out forwards;
     z-index: 1;
+    transform: translateZ(0);
+    will-change: transform, opacity;
 }
 
 .orb-green {
@@ -226,9 +228,11 @@ a {
     top: 0;
     width: 100%;
     z-index: 100;
-    transition: var(--transition-fast);
+    transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
     background: transparent;
     padding: 1.5rem 0;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 #main-header.scrolled {
