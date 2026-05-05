@@ -42,81 +42,86 @@ html {
 }
 
 /* ==========================================================================
-   Intro Animation (Banderole Congolaise)
+   Intro Animation (Orbes Modernes & Verre Dépoli)
    ========================================================================== */
 #intro-animation {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color-bg);
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: #FAFAF9; /* Fond clair très léger */
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    animation: fadeOutIntro 0.8s ease forwards 3.2s;
+    animation: fadeOutIntro 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 3.2s;
     pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0;
+    animation: floatOrb 3.5s ease-in-out forwards;
+    z-index: 1;
+}
+
+.orb-green {
+    width: 50vw; height: 50vw;
+    background: #009543;
+    top: -10%; left: -10%;
+    animation-delay: 0.1s;
+}
+
+.orb-yellow {
+    width: 45vw; height: 45vw;
+    background: #FBDE4A;
+    bottom: -20%; right: -10%;
+    animation-delay: 0.3s;
+}
+
+.orb-red {
+    width: 40vw; height: 40vw;
+    background: #DC241F;
+    top: 40%; left: 30%;
+    animation-delay: 0.5s;
+}
+
+.intro-glass {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    backdrop-filter: blur(50px);
+    background: rgba(255, 255, 255, 0.6); /* Effet verre givré premium */
+    z-index: 2;
+    opacity: 0;
+    animation: fadeInGlass 1s ease forwards 0.2s;
 }
 
 .intro-logo-container {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     opacity: 0;
-    transform: scale(0.9);
-    animation: revealLogo 1s cubic-bezier(0.25, 1, 0.5, 1) forwards 2.0s;
+    transform: translateY(30px) scale(0.95);
+    animation: revealLogo 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 1s;
 }
 
 .intro-logo {
     max-width: 450px;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.15));
 }
 
-.congo-flag-sweeper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    z-index: 3;
-    /* Transformation initiale pour placer les bandes hors de l'écran (à gauche et en biais) */
-    transform-origin: center;
+@keyframes floatOrb {
+    0% { transform: scale(0.5) translate(0, 0); opacity: 0; }
+    30% { opacity: 0.5; }
+    100% { transform: scale(1.1) translate(5%, 5%); opacity: 0.7; }
 }
 
-.stripe {
-    flex: 1;
-    width: 250%; /* Très large pour couvrir lors de la rotation */
-    transform: translateX(-100%) rotate(-15deg);
-    transform-origin: left center;
-}
-
-.stripe.green {
-    background-color: #009543; /* Vert drapeau Congo */
-    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.2s;
-}
-
-.stripe.yellow {
-    background-color: #FBDE4A; /* Jaune drapeau Congo */
-    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.4s;
-}
-
-.stripe.red {
-    background-color: #DC241F; /* Rouge drapeau Congo */
-    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.6s;
-}
-
-@keyframes sweepStripe {
-    0% { transform: translateX(-100%) rotate(-15deg); }
-    50% { transform: translateX(-20%) rotate(-15deg); }
-    100% { transform: translateX(100%) rotate(-15deg); }
+@keyframes fadeInGlass {
+    to { opacity: 1; }
 }
 
 @keyframes revealLogo {
-    0% { opacity: 0; transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes fadeOutIntro {
