@@ -60,38 +60,38 @@ html {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(50px);
+    /* filter: blur(50px); SUPPRIMÉ : cause des ralentissements sévères sur mobile */
     opacity: 0;
     animation: floatOrb 3.5s ease-in-out forwards;
     z-index: 1;
 }
 
 .orb-green {
-    width: 50vw; height: 50vw;
-    background: #00A650; /* Vert vif */
-    top: -10%; left: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(0,166,80,0.8) 0%, rgba(0,166,80,0) 70%); /* Remplace le blur physique */
+    top: -15%; left: -15%;
     animation-delay: 0.1s;
 }
 
 .orb-yellow {
-    width: 45vw; height: 45vw;
-    background: #FBDE02; /* Jaune vif */
-    bottom: -20%; right: -10%;
+    width: 55vw; height: 55vw;
+    background: radial-gradient(circle, rgba(251,222,2,0.8) 0%, rgba(251,222,2,0) 70%);
+    bottom: -25%; right: -15%;
     animation-delay: 0.3s;
 }
 
 .orb-red {
-    width: 40vw; height: 40vw;
-    background: #ED1C24; /* Rouge vif */
-    top: 40%; left: 30%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(237,28,36,0.8) 0%, rgba(237,28,36,0) 70%);
+    top: 35%; left: 25%;
     animation-delay: 0.5s;
 }
 
 .intro-glass {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    backdrop-filter: blur(30px);
-    background: rgba(255, 255, 255, 0.15); /* Moins de blanc pour ne pas délaver les couleurs */
+    /* backdrop-filter: blur(30px); SUPPRIMÉ : cause de freeze navigateur */
+    background: rgba(250, 250, 249, 0.4); /* Voile clair ultra léger en mémoire */
     z-index: 2;
     opacity: 0;
     animation: fadeInGlass 1s ease forwards 0.2s;
