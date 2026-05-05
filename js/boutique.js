@@ -4,7 +4,7 @@
 let allProducts = [];
 let filteredProducts = [];
 let currentPage = 1;
-const ITEMS_PER_PAGE = 2000; // Affichage complet des résultats sans pagination
+const ITEMS_PER_PAGE = 100; // Affichage par lot de 100 pour éviter le plantage du navigateur
 
 // Filtres actifs
 let filters = {
@@ -348,11 +348,16 @@ function renderPage() {
         return;
     }
 
-    // Rendu de tous les produits filtrés (sans pagination)
-    grid.innerHTML = filteredProducts.map((p, index) => createCardHTML(p, index)).join('');
+    // Calcul de la pagination
+    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const slice = filteredProducts.slice(start, start + ITEMS_PER_PAGE);
 
-    // Pagination masquée si tout est sur une page
-    pagination.innerHTML = '';
+    // Rendu des cartes sans délai
+    grid.innerHTML = slice.map((p, index) => createCardHTML(p, index)).join('');
+
+    // Rendu pagination
+    renderPagination(totalPages);
 }
 
 function initRevealAnimation() {
