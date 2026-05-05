@@ -471,6 +471,7 @@ function openModal(p) {
     }
     cartBtn.textContent = 'Ajouter à ma sélection';
     cartBtn.dataset.cb = p.cb;
+    cartBtn.onclick = () => window.orcaCart.addItem(p.cb);
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
