@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORCA - L'excellence de l'ameublement au Congo</title>
+    <meta name="description" content="Depuis plus de 10 ans au Congo, ORCA propose les meilleurs articles d'ameublement et de décoration au meilleur prix.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Animation d'ouverture : Banderole Congolaise & Logo -->
+    <div id="intro-animation">
+        <div class="congo-flag-sweeper">
+            <div class="stripe green"></div>
+            <div class="stripe yellow"></div>
+            <div class="stripe red"></div>
+        </div>
+        <div class="intro-logo-container">
+            <img src="assets/images/logo.png" alt="ORCA Logo" class="intro-logo">
+        </div>
+    </div>
+
+    <!-- En-tête -->
+    <header id="main-header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="assets/images/logo.png" alt="ORCA">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#a-propos">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <button aria-label="Recherche"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+                <button aria-label="Panier"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Héros -->
+    <section id="accueil" class="hero">
+        <div class="hero-image-container">
+            <img src="assets/images/hero_image.png" alt="Salon moderne et épuré" class="hero-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content container">
+            <div class="hero-text reveal">
+                <h1>L'élégance accessible<br>pour votre foyer</h1>
+                <p>Découvrez notre nouvelle collection d'ameublement premium au Congo.</p>
+                <a href="boutique.html" class="btn btn-primary">Explorer la boutique</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À Propos (Texte personnalisé pour le Congo) -->
+    <section id="a-propos" class="about-section padding-section bg-light">
+        <div class="container about-container reveal">
+            <div class="about-content">
+                <span class="subtitle">Notre Histoire</span>
+                <h2>Plus d'une décennie à sublimer vos intérieurs</h2>
+                <p>Cela fait plus de 10 ans que nous sommes établis au Congo. Notre mission quotidienne est de vous proposer les meilleurs articles au meilleur prix.</p>
+                <p>Nous sommes convaincus que chaque Congolais mérite de vivre dans un espace inspirant, élégant et confortable. C'est pourquoi nous sélectionnons rigoureusement nos collections, afin que vos foyers n'aient absolument rien à envier à ce qu'on peut trouver en Europe.</p>
+                <a href="boutique.html" class="btn btn-outline">Découvrir notre sélection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Collections -->
+    <section id="collections" class="collections-section padding-section">
+        <div class="container">
+            <div class="section-header center reveal">
+                <span class="subtitle">Nos Essentiels</span>
+                <h2>Collections Emblématiques</h2>
+            </div>
+            <div class="collections-grid">
+                <!-- Canapés -->
+                <a href="boutique.html" class="collection-card reveal">
+                    <div class="card-image">
+                        <img src="assets/images/category_sofa.png" alt="Canapés modernes">
+                    </div>
+                    <div class="card-content">
+                        <h3>Canapés & Assises</h3>
+                        <span class="link-text">Voir la sélection</span>
+                    </div>
+                </a>
+                <!-- Luminaires -->
+                <a href="boutique.html" class="collection-card reveal" style="transition-delay: 0.1s;">
+                    <div class="card-image">
+                        <img src="assets/images/category_lighting.png" alt="Luminaires design">
+                    </div>
+                    <div class="card-content">
+                        <h3>Luminaires</h3>
+                        <span class="link-text">Voir la sélection</span>
+                    </div>
+                </a>
+                <!-- Décoration -->
+                <a href="boutique.html" class="collection-card reveal" style="transition-delay: 0.2s;">
+                    <div class="card-image">
+                        <img src="assets/images/category_decor.png" alt="Objets de décoration">
+                    </div>
+                    <div class="card-content">
+                        <h3>Décoration</h3>
+                        <span class="link-text">Voir la sélection</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <img src="assets/images/logo.png" alt="ORCA" class="footer-logo">
+                <p>L'excellence de l'ameublement européen, accessible au Congo.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="#a-propos">Notre Histoire</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Nos Boutiques</h4>
+                <div style="margin-bottom: 1.5rem;">
+                    <strong>Orca Deco Brazzaville</strong><br>
+                    Rond point de la gare<br>
+                    Brazzaville - République du Congo<br>
+                    Tél : 00242 06 903 49 46
+                </div>
+                <div>
+                    <strong>Orca Deco Pointe Noire</strong><br>
+                    Av. Marien Ngouabi × Av. Simon Kimbango<br>
+                    Pointe Noire - République du Congo<br>
+                    Tél : 00242 06 527 58 41
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <p>Email : contact@orca.cg</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 ORCA Congo. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

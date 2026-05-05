@@ -1,0 +1,547 @@
+:root {
+    /* Couleurs Neutres & Premium */
+    --color-bg: #FAFAF9; /* Blanc cassé très léger */
+    --color-surface: #FFFFFF;
+    --color-text: #2D2D2D;
+    --color-text-light: #6B6B6B;
+    --color-accent: #1A1A1A; /* Noir profond */
+    --color-accent-hover: #404040;
+    --color-light-bg: #F0EEEB; /* Grège pour les sections */
+    
+    /* Typographie */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Espacements */
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    
+    /* Transitions */
+    --transition-fast: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-smooth: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   Intro Animation (Banderole Congolaise)
+   ========================================================================== */
+#intro-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    animation: fadeOutIntro 0.8s ease forwards 4.5s;
+    pointer-events: none;
+}
+
+.intro-logo-container {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: revealLogo 1s cubic-bezier(0.25, 1, 0.5, 1) forwards 2.5s;
+}
+
+.intro-logo {
+    max-width: 450px;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.congo-flag-sweeper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+    /* Transformation initiale pour placer les bandes hors de l'écran (à gauche et en biais) */
+    transform-origin: center;
+}
+
+.stripe {
+    flex: 1;
+    width: 250%; /* Très large pour couvrir lors de la rotation */
+    transform: translateX(-100%) rotate(-15deg);
+    transform-origin: left center;
+}
+
+.stripe.green {
+    background-color: #009543; /* Vert drapeau Congo */
+    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.2s;
+}
+
+.stripe.yellow {
+    background-color: #FBDE4A; /* Jaune drapeau Congo */
+    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.4s;
+}
+
+.stripe.red {
+    background-color: #DC241F; /* Rouge drapeau Congo */
+    animation: sweepStripe 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.6s;
+}
+
+@keyframes sweepStripe {
+    0% { transform: translateX(-100%) rotate(-15deg); }
+    50% { transform: translateX(-20%) rotate(-15deg); }
+    100% { transform: translateX(100%) rotate(-15deg); }
+}
+
+@keyframes revealLogo {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeOutIntro {
+    0% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+/* ==========================================================================
+   Typography & Utilitaires
+   ========================================================================== */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--color-accent);
+    line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.padding-section {
+    padding: var(--space-xl) 0;
+}
+
+.bg-light {
+    background-color: var(--color-light-bg);
+}
+
+.center { text-align: center; }
+
+.subtitle {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.btn-outline {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+#main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    transition: var(--transition-fast);
+    background: transparent;
+    padding: 1.5rem 0;
+}
+
+#main-header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 120px;
+    object-fit: contain;
+    transition: var(--transition-fast);
+}
+
+#main-header.scrolled .logo img {
+    height: 75px; /* Réduit au scroll pour garder un menu fin */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+}
+
+.main-nav a {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-accent);
+    position: relative;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transition: var(--transition-fast);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+.header-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header-icons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-accent);
+    transition: var(--transition-fast);
+}
+
+.header-icons button:hover {
+    color: var(--color-text-light);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    animation: subtleZoom 20s ease infinite alternate;
+}
+
+@keyframes subtleZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(250,250,249,0.9) 0%, rgba(250,250,249,0.4) 50%, rgba(250,250,249,0) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--color-accent);
+}
+
+/* ==========================================================================
+   About Section
+   ========================================================================== */
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content h2 {
+    margin-bottom: 2rem;
+}
+
+.about-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-content .btn {
+    margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   Collections Section
+   ========================================================================== */
+.section-header {
+    margin-bottom: var(--space-lg);
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.collection-card {
+    display: block;
+    group: collection;
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.collection-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-content h3 {
+    margin-bottom: 0.5rem;
+}
+
+.link-text {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-light);
+    position: relative;
+    display: inline-block;
+}
+
+.link-text::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transition: var(--transition-fast);
+}
+
+.collection-card:hover .link-text::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.main-footer {
+    background-color: var(--color-accent);
+    color: white;
+    padding-top: var(--space-xl);
+}
+
+.main-footer p, .main-footer a {
+    color: rgba(255,255,255,0.7);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: var(--space-lg);
+}
+
+.footer-logo {
+    height: 80px;
+    margin-bottom: 1.5rem;
+    filter: brightness(0) invert(1);
+}
+
+.footer-links h4, .footer-contact h4 {
+    color: white;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        display: none; /* Simplification pour la démo */
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    .hero-overlay {
+        background: rgba(250,250,249,0.8);
+    }
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

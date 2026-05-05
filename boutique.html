@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique - ORCA Congo</title>
+    <meta name="description" content="Découvrez tout le catalogue ORCA : ameublement, décoration, cuisine, luminaires et bien plus. Livraison à Brazzaville et Pointe-Noire.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/boutique.css">
+</head>
+<body class="boutique-page">
+
+    <!-- En-tête -->
+    <header id="main-header" class="scrolled">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="ORCA">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="boutique.html" class="active">Boutique</a></li>
+                    <li><a href="index.html#a-propos">À Propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <button aria-label="Menu" class="menu-toggle"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière Boutique -->
+    <div class="boutique-banner">
+        <h1>Notre Catalogue</h1>
+        <p>Plus de 22 000 articles sélectionnés pour votre foyer</p>
+    </div>
+
+    <!-- Barre d'outils (Recherche, Dispo, Tri) -->
+    <div class="top-toolbar-section">
+            <div class="container">
+                <div class="top-toolbar">
+                    <div class="toolbar-left">
+                        <div class="search-input-wrap">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                            <input type="text" id="search-input" placeholder="Rechercher (Désignation, code...)">
+                        </div>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="filter-stock"> En stock
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="filter-promo"> En promotion
+                        </label>
+                    </div>
+                    <div class="toolbar-right">
+                        <span id="result-count" class="result-count">Chargement...</span>
+                        <select id="sort-select" class="sort-select">
+                            <option value="nom">Nom (A → Z)</option>
+                            <option value="prix-asc">Prix croissant</option>
+                            <option value="prix-desc">Prix décroissant</option>
+                            <option value="stock">Stock disponible</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Horizontale (Pilules) -->
+        <div class="pills-navigation-section">
+            <div class="container">
+                <!-- Secteurs -->
+                <div class="pills-track-wrapper">
+                    <div id="secteur-pills" class="pills-track"></div>
+                </div>
+                
+                <!-- Familles (apparaît si un secteur est sélectionné) -->
+                <div class="pills-track-wrapper secondary-track" id="famille-track-wrapper" style="display: none;">
+                    <div id="famille-pills" class="pills-track"></div>
+                </div>
+                
+                <!-- Sous-familles (apparaît si une famille est sélectionnée) -->
+                <div class="pills-track-wrapper tertiary-track" id="sous-famille-track-wrapper" style="display: none;">
+                    <div id="sous-famille-pills" class="pills-track"></div>
+                </div>
+
+                <!-- Tags Actifs (si recherche ou cases cochées) -->
+                <div id="active-filters" class="active-filters"></div>
+            </div>
+        </div>
+
+    <!-- Layout Principal (Plein écran) -->
+    <div class="boutique-layout container">
+        <main class="produits-zone">
+            <!-- Grille Produits -->
+            <div id="products-grid" class="products-grid"></div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination"></div>
+        </main>
+    </div>
+
+    <!-- Modal Fiche Produit -->
+    <div id="product-modal" class="modal-overlay" style="display:none">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-side">
+                    <img id="modal-img" src="" alt="">
+                    <div class="modal-img-placeholder" id="modal-img-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    </div>
+                </div>
+                <div class="modal-info-side">
+                    <span id="modal-secteur" class="modal-badge"></span>
+                    <h2 id="modal-nom"></h2>
+                    <p class="modal-ref">Code-barre : <strong id="modal-cb"></strong></p>
+                    <div class="modal-prix-block">
+                        <span id="modal-prix-promo" class="prix-promo" style="display:none"></span>
+                        <span id="modal-prix" class="prix-normal"></span>
+                    </div>
+                    <div class="modal-stock-block">
+                        <div class="stock-item">
+                            <span class="stock-label">Stock Magasin</span>
+                            <span id="modal-stock-mag" class="stock-value"></span>
+                        </div>
+                        <div class="stock-item">
+                            <span class="stock-label">Stock Dépôt</span>
+                            <span id="modal-stock-depot" class="stock-value"></span>
+                        </div>
+                    </div>
+                    <div class="modal-famille-info">
+                        <span id="modal-famille"></span>
+                        <span id="modal-sous-famille"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer compact -->
+    <footer class="main-footer compact-footer">
+        <div class="footer-bottom container">
+            <p>&copy; 2026 ORCA Congo. Tous droits réservés. | <a href="index.html">Retour à l'accueil</a></p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/boutique.js"></script>
+</body>
+</html>
