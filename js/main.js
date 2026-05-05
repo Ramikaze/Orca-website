@@ -51,31 +51,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    // 4. Global Search Activation
+    // 4. Global Search Activation (Overlay)
     const searchToggle = document.getElementById('search-toggle');
-    const searchBar = document.getElementById('header-search-bar');
-    const searchInput = document.getElementById('header-search-input');
+    const searchOverlay = document.getElementById('search-overlay');
+    const closeSearch = document.getElementById('close-search');
+    const globalSearchInput = document.getElementById('global-search-input');
 
-    if (searchToggle && searchBar) {
-        searchToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            searchBar.classList.toggle('active');
-            if (searchBar.classList.contains('active')) {
-                searchInput.focus();
+    if (searchToggle && searchOverlay) {
+        searchToggle.addEventListener('click', () => {
+            searchOverlay.classList.add('active');
+            setTimeout(() => globalSearchInput.focus(), 100);
+            document.body.style.overflow = 'hidden'; // Bloquer le scroll
+        });
+
+        const hideSearch = () => {
+            searchOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        closeSearch.addEventListener('click', hideSearch);
+
+        // Fermer avec Echap
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                hideSearch();
             }
         });
 
-        // Fermer la recherche si on clique ailleurs
-        document.addEventListener('click', (e) => {
-            if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
-                searchBar.classList.remove('active');
-            }
-        });
-
-        // Gérer la recherche
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && searchInput.value.trim() !== '') {
-                const query = encodeURIComponent(searchInput.value.trim());
+        // Gérer la recherche (Entrée)
+        globalSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && globalSearchInput.value.trim() !== '') {
+                const query = encodeURIComponent(globalSearchInput.value.trim());
                 window.location.href = `boutique.html?q=${query}`;
             }
         });
