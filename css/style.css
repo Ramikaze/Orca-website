@@ -542,19 +542,19 @@ a {
    Footer
    ========================================================================== */
 .main-footer {
-    background-color: #111; /* Retour au noir élégant */
-    color: white;
-    padding: 3rem 0 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    background-color: var(--color-bg); /* Retour au clair premium pour visibilité logo */
+    color: var(--color-text);
+    padding: 4rem 0 2rem;
+    border-top: 1px solid #EAE8E4;
 }
 
 .main-footer p, .main-footer a {
-    color: rgba(255,255,255,0.6);
-    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-size: 1.05rem; /* Police plus grosse */
 }
 
 .main-footer a:hover {
-    color: white;
+    color: var(--color-accent);
 }
 
 .footer-brand {
@@ -572,29 +572,28 @@ a {
 }
 
 .footer-logo {
-    height: 70px; /* Taille plus raisonnable */
-    margin-bottom: 0.5rem;
-    filter: brightness(0) invert(1); /* Indispensable sur fond noir */
+    height: 90px;
+    margin-bottom: 0.8rem;
+    filter: none; /* Pas de filtre sur fond clair */
     display: block;
 }
 
 .footer-slogan {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.4rem; /* Slogan plus visible */
     font-style: italic;
-    color: white;
+    color: var(--color-accent);
     margin-top: 0;
-    opacity: 0.8;
 }
 
 .footer-links h4, .footer-contact h4 {
-    color: white;
-    margin-bottom: 1rem;
+    color: var(--color-accent);
+    margin-bottom: 1.2rem;
     font-family: var(--font-body);
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 0.8rem;
-    opacity: 0.5;
+    font-size: 0.95rem; /* Titres plus gros */
+    font-weight: 700;
 }
 
 .footer-links {
@@ -628,14 +627,15 @@ a {
 }
 
 .shop-block {
-    font-size: 0.85rem;
-    line-height: 1.4;
+    font-size: 1rem; /* Texte adresses plus gros */
+    line-height: 1.5;
 }
 
 .shop-block strong {
-    color: white;
+    color: var(--color-text);
     display: block;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .footer-links a:hover {
