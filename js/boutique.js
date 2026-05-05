@@ -4,7 +4,7 @@
 let allProducts = [];
 let filteredProducts = [];
 let currentPage = 1;
-const ITEMS_PER_PAGE = 100; // Affichage par lot de 100 pour éviter le plantage du navigateur
+const ITEMS_PER_PAGE = 50;
 
 // Filtres actifs
 let filters = {
@@ -399,7 +399,7 @@ function createCardHTML(p, index) {
     }
 
     return `
-        <div class="product-card" data-cb="${p.cb}" onclick="openModalById('${p.cb}')" style="transition-delay: ${index * 60}ms">
+        <div class="product-card" data-cb="${p.cb}" onclick="openModalById('${p.cb}')">
             ${stockBadge}
             <div class="card-img">
                 <img src="assets/produits/${p.cb}.jpg" alt="${p.nom}" loading="lazy" onerror="this.onerror=null; this.src='assets/images/placeholder.png';">
@@ -540,3 +540,18 @@ document.getElementById('product-modal').addEventListener('click', (e) => {
         document.body.style.overflow = '';
     }
 });
+
+// Bouton Retour en Haut
+const backToTopBtn = document.getElementById('back-to-top');
+if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
