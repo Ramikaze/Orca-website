@@ -241,14 +241,15 @@ function setupEventListeners() {
 function applyFiltersAndRender() {
     let result = [...allProducts];
 
-    // Recherche
+    // Recherche Intelligente (Multi-mots et sans accents)
     if (filters.search) {
-        const q = filters.search.toLowerCase();
-        result = result.filter(p => 
-            p.nom.toLowerCase().includes(q) || 
-            p.cb.toLowerCase().includes(q) || 
-            (p.ref && p.ref.toLowerCase().includes(q))
-        );
+        const normalize = (str) => str ? str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+        const queryTokens = normalize(filters.search).split(/\s+/).filter(t => t.length > 0);
+        
+        result = result.filter(p => {
+            const searchPool = normalize(`${p.nom} ${p.cb} ${p.ref || ''} ${p.secteur || ''} ${p.famille || ''} ${p.sous_famille || ''}`);
+            return queryTokens.every(token => searchPool.includes(token));
+        });
     }
 
     // Secteur / Famille
