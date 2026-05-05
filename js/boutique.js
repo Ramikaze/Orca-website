@@ -348,8 +348,8 @@ function renderPage() {
         return;
     }
 
-    // Rendu des cartes sans délai
-    grid.innerHTML = slice.map((p, index) => createCardHTML(p, index)).join('');
+    // Rendu de tous les produits filtrés (sans pagination)
+    grid.innerHTML = filteredProducts.map((p, index) => createCardHTML(p, index)).join('');
 
     // Pagination masquée si tout est sur une page
     pagination.innerHTML = '';
