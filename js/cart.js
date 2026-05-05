@@ -132,97 +132,82 @@ class OrcaCart {
             return;
         }
 
-        const printWindow = window.open('', '_blank');
+        const overlay = document.getElementById('quotation-overlay');
+        const content = document.getElementById('quotation-content');
         const total = this.items.reduce((sum, item) => sum + item.prix * item.quantity, 0);
         const date = new Date().toLocaleDateString('fr-FR');
 
         let html = `
-            <html>
-            <head>
-                <title>Ma Sélection ORCA - ${date}</title>
-                <style>
-                    @page { size: auto; margin: 0mm; }
-                    body { font-family: 'Inter', sans-serif; color: #111; padding: 2cm; line-height: 1.6; }
-                    .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid #111; padding-bottom: 20px; margin-bottom: 40px; }
-                    .logo { height: 80px; }
-                    .quote-info { text-align: right; }
-                    .quote-info h1 { margin: 0; font-size: 28px; letter-spacing: 2px; }
-                    table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
-                    th { text-align: left; background: #f9f9f9; padding: 15px; border-bottom: 2px solid #111; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
-                    td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: middle; }
-                    .item-img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #eee; }
-                    .item-cb { font-family: monospace; background: #f0f0f0; padding: 4px 8px; border-radius: 4px; font-size: 14px; font-weight: bold; }
-                    .price { font-weight: 600; }
-                    .total-section { display: flex; justify-content: flex-end; margin-top: 20px; }
-                    .total-box { background: #111; color: white; padding: 20px 40px; text-align: right; }
-                    .total-label { font-size: 14px; opacity: 0.8; text-transform: uppercase; }
-                    .total-amount { font-size: 24px; font-weight: bold; display: block; margin-top: 5px; }
-                    .disclaimer { margin-top: 60px; padding: 20px; border: 1px dashed #ccc; font-size: 13px; color: #666; background: #fafafa; }
-                    .no-print-zone { margin-top: 40px; text-align: center; }
-                    .print-btn { background: #111; color: white; padding: 15px 30px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-                    @media print {
-                        .no-print-zone { display: none; }
-                        body { padding: 0; }
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="header">
-                    <img src="assets/images/logo.png" class="logo">
-                    <div class="quote-info">
+            <div class="print-container">
+                <div class="quote-header">
+                    <img src="assets/images/logo.png" class="quote-logo">
+                    <div class="quote-meta">
                         <h1>MA SÉLECTION</h1>
                         <p>Date : ${date}</p>
                     </div>
                 </div>
                 
-                <table>
+                <table class="quote-table">
                     <thead>
                         <tr>
                             <th>Photo</th>
                             <th>Désignation</th>
                             <th>Code-Barre</th>
                             <th>Prix Unitaire</th>
-                            <th>Quantité</th>
+                            <th>Qté</th>
                             <th style="text-align:right">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${this.items.map(item => `
                             <tr>
-                                <td><img src="assets/produits/${item.cb}.jpg" class="item-img" onerror="this.onerror=null; this.src='assets/images/placeholder.png'"></td>
+                                <td><img src="assets/produits/${item.cb}.jpg" class="quote-item-img" onerror="this.onerror=null; this.src='assets/images/placeholder.png'"></td>
                                 <td><strong>${item.nom}</strong></td>
-                                <td><span class="item-cb">${item.cb}</span></td>
-                                <td class="price">${item.prix.toLocaleString()} FCFA</td>
+                                <td><span class="quote-cb">${item.cb}</span></td>
+                                <td>${item.prix.toLocaleString()} FCFA</td>
                                 <td>${item.quantity}</td>
-                                <td class="price" style="text-align:right">${(item.prix * item.quantity).toLocaleString()} FCFA</td>
+                                <td style="text-align:right; font-weight:bold;">${(item.prix * item.quantity).toLocaleString()} FCFA</td>
                             </tr>
                         `).join('')}
                     </tbody>
                 </table>
 
-                <div class="total-section">
-                    <div class="total-box">
-                        <span class="total-label">Total Estimé de la sélection</span>
-                        <span class="total-amount">${total.toLocaleString()} FCFA</span>
+                <div class="quote-total-section">
+                    <div class="quote-total-box">
+                        <span>Total Estimé</span>
+                        <span class="total-val">${total.toLocaleString()} FCFA</span>
                     </div>
                 </div>
 
-                <div class="disclaimer">
-                    <strong>Note importante :</strong> Ce document est une aide à la vente facilitant l'établissement d'un devis officiel en magasin. 
-                    Les prix et la disponibilité des stocks sont donnés à titre indicatif au moment de la consultation et doivent être validés 
-                    par un conseiller ORCA Deco lors de votre passage en boutique.
+                <div class="quote-disclaimer">
+                    <strong>Note importante :</strong> Ce document facilite l'établissement d'un devis officiel en magasin. 
+                    Prix et stocks indicatifs à confirmer par un conseiller ORCA.
                 </div>
 
-                <div class="no-print-zone">
-                    <button class="print-btn" onclick="window.print()">Imprimer ou Enregistrer en PDF</button>
-                    <p style="margin-top:10px; font-size:12px; color:#888;">Présentez ce document à un vendeur pour scanner rapidement vos articles.</p>
+                <div class="quote-actions no-print">
+                    <button class="print-main-btn" onclick="window.print()">Imprimer ou PDF</button>
+                    <p>Présentez ce document en magasin pour un service rapide.</p>
                 </div>
-            </body>
-            </html>
+            </div>
         `;
 
-        printWindow.document.write(html);
-        printWindow.document.close();
+        content.innerHTML = html;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Event listener pour fermer
+        document.getElementById('close-quotation').onclick = () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        // Fermer au clic sur l'overlay
+        overlay.onclick = (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
     }
 }
 
