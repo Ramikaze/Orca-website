@@ -135,14 +135,43 @@ body.boutique-page {
 }
 
 .sort-select {
-    border: 1px solid #E0DEDB;
-    padding: 0.5rem 1.5rem 0.5rem 1rem;
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 0.6rem 1.5rem 0.6rem 1rem;
     font-family: var(--font-body);
     font-size: 0.9rem;
-    background: var(--color-bg);
+    background: white;
     cursor: pointer;
     outline: none;
-    border-radius: 20px;
+    border-radius: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.reset-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 40px;
+}
+
+.reset-btn:hover {
+    color: #DC241F;
+    background: rgba(220, 36, 31, 0.05);
+}
+
+.reset-btn svg {
+    transition: transform 0.5s ease;
+}
+
+.reset-btn:hover svg {
+    transform: rotate(-180deg);
 }
 
 /* ============================================================

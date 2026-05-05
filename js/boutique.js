@@ -209,6 +209,30 @@ function setupEventListeners() {
         filters.sort = e.target.value;
         applyFiltersAndRender();
     });
+
+    // Reset Filters
+    const resetBtn = document.getElementById('reset-filters');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            filters.search = '';
+            filters.secteur = null;
+            filters.famille = null;
+            filters.sousFamille = null;
+            filters.stockOnly = false;
+            filters.promoOnly = false;
+            filters.sort = 'nom';
+
+            // Reset UI
+            searchInput.value = '';
+            filterStock.checked = false;
+            filterPromo.checked = false;
+            sortSelect.value = 'nom';
+
+            // Re-render
+            renderSecteurs(); // Pour remettre "Tous les secteurs" en actif
+            applyFiltersAndRender();
+        });
+    }
 }
 
 // ============================================================
