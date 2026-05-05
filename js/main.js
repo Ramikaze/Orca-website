@@ -78,7 +78,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Gérer la recherche (Entrée)
+        // Gérer la recherche (Live Suggestions)
+        globalSearchInput.addEventListener('input', (e) => {
+            const query = globalSearchInput.value.trim();
+            const preview = document.getElementById('search-results-preview');
+            
+            if (query.length < 2) {
+                preview.classList.remove('active');
+                return;
+            }
+
+            if (!window.ORCA_PRODUCTS) return;
+
+            const normalize = (str) => {
+                if (!str) return "";
+                return str.normalize('NFD')
+                          .replace(/[\u0300-\u036f]/g, "")
+                          .toLowerCase()
+                          .replace(/s\b/g, "");
+            };
+
+            const queryTokens = normalize(query).split(/\s+/).filter(t => t.length > 0);
+            const matches = window.ORCA_PRODUCTS.filter(p => {
+                const searchPool = normalize(`${p.nom} ${p.cb} ${p.ref || ''} ${p.secteur || ''}`);
+                return queryTokens.every(token => searchPool.includes(token));
+            }).slice(0, 5); // Max 5 suggestions
+
+            if (matches.length > 0) {
+                preview.innerHTML = matches.map(p => `
+                    <a href="boutique.html?cb=${p.cb}" class="preview-item">
+                        <img src="assets/produits/${p.cb}.jpg" class="preview-img" onerror="this.src='assets/images/placeholder.png'">
+                        <div class="preview-info">
+                            <h4>${p.nom}</h4>
+                            <p>${p.secteur}</p>
+                        </div>
+                    </a>
+                `).join('');
+                preview.classList.add('active');
+            } else {
+                preview.innerHTML = '<div class="preview-no-results">Aucun article trouvé...</div>';
+                preview.classList.add('active');
+            }
+        });
+
         globalSearchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && globalSearchInput.value.trim() !== '') {
                 const query = encodeURIComponent(globalSearchInput.value.trim());

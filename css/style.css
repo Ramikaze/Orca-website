@@ -1118,3 +1118,73 @@ a {
         -webkit-print-color-adjust: exact;
     }
 }
+
+/* ==========================================================================
+   Search Results Preview (Live Suggestions)
+   ========================================================================== */
+.search-results-preview {
+    width: 100%;
+    max-height: 400px;
+    background: white;
+    border-radius: 12px;
+    margin-top: 1rem;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    display: none; /* Caché par défaut */
+    z-index: 100;
+}
+
+.search-results-preview.active {
+    display: block;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    text-align: left;
+}
+
+.preview-item:last-child {
+    border-bottom: none;
+}
+
+.preview-item:hover {
+    background: #f9f9f9;
+}
+
+.preview-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #f0f0f0;
+}
+
+.preview-info h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.preview-info p {
+    margin: 0.2rem 0 0;
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.preview-no-results {
+    padding: 2rem;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}

@@ -241,9 +241,16 @@ function setupEventListeners() {
 function applyFiltersAndRender() {
     let result = [...allProducts];
 
-    // Recherche Intelligente (Multi-mots et sans accents)
+    // Recherche Ultra-Intelligente (Multi-mots, Pluriels, Accents)
     if (filters.search) {
-        const normalize = (str) => str ? str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+        const normalize = (str) => {
+            if (!str) return "";
+            return str.normalize('NFD')
+                      .replace(/[\u0300-\u036f]/g, "") // Supprime accents
+                      .toLowerCase()
+                      .replace(/s\b/g, ""); // Supprime les 's' en fin de mot (pluriels simples)
+        };
+
         const queryTokens = normalize(filters.search).split(/\s+/).filter(t => t.length > 0);
         
         result = result.filter(p => {
