@@ -237,7 +237,8 @@ function setupEventListeners() {
             sortSelect.value = 'nom';
 
             // Re-render
-            renderSecteurs(); // Pour remettre "Tous les secteurs" en actif
+            buildSecteurPills(); // Pour remettre "Tous les secteurs" en actif
+            updateSubPills(); // Pour masquer les sous-menus
             applyFiltersAndRender();
         });
     }
