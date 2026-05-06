@@ -166,7 +166,7 @@ class OrcaCart {
                 <div class="quote-header">
                     <img src="assets/images/logo.png" class="quote-logo">
                     <div class="quote-meta">
-                        <h1>MA SÉLECTION</h1>
+                        <h1>AIDE À L'ACHAT (MA SÉLECTION)</h1>
                         <p>Date : ${date}</p>
                     </div>
                 </div>
@@ -204,8 +204,7 @@ class OrcaCart {
                 </div>
 
                 <div class="quote-disclaimer">
-                    <strong>Note importante :</strong> Ce document facilite l'établissement d'un devis officiel en magasin. 
-                    Prix et stocks indicatifs à confirmer par un conseiller ORCA. 
+                    <strong>Note importante :</strong> Ceci est une liste d'aide à l'achat et ne constitue en aucun cas un devis officiel. Les prix et la disponibilité en stock sont donnés à titre purement indicatif et doivent impérativement être vérifiés et validés par un conseiller en magasin avant tout achat. N'hésitez pas à appeler le magasin pour confirmer ces informations.
                     <br><br>
                     <em>Présentez ce document à un vendeur pour trouver rapidement vos articles.</em>
                 </div>

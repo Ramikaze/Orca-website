@@ -161,7 +161,7 @@ class OrcaChatbot {
             this.sendBotTypingThenMessage("📍 **Brazzaville** : Rond point de la gare<br>📍 **Pointe Noire** : Av. Marien Ngouabi × Av. Simon Kimbango");
         }
         else if (normalizedInput.includes('devis') || normalizedInput.includes('panier') || normalizedInput.includes('commander') || normalizedInput.includes('prix')) {
-            this.sendBotTypingThenMessage("Pour commander ou connaître les prix, vous pouvez ajouter vos articles à votre sélection en cliquant sur l'icône de panier, puis générer un devis automatiquement depuis la page Boutique ! 📄");
+            this.sendBotTypingThenMessage("Pour commander ou connaître les prix indicatifs, vous pouvez ajouter vos articles à votre sélection en cliquant sur l'icône de panier, puis générer une liste d'aide à l'achat automatiquement depuis la page Boutique ! 📄");
         }
         else if (normalizedInput.includes('salon') || normalizedInput.includes('canape') || normalizedInput.includes('fauteuil') || normalizedInput.includes('sofa')) {
             this.sendBotTypingThenMessage("Vous cherchez un salon ? 🛋️ Rendez-vous dans la rubrique 'Boutique' et tapez 'Salon' ou 'Canapé' dans la barre de recherche. Vous y découvrirez tous nos modèles !");
@@ -182,7 +182,7 @@ class OrcaChatbot {
             this.sendBotTypingThenMessage("Nous acceptons les paiements en espèces, par carte bancaire, et par virement bancaire directement en magasin. 💳");
         }
         else if (normalizedInput.includes('garantie') || normalizedInput.includes('retour') || normalizedInput.includes('sav') || normalizedInput.includes('casse')) {
-            this.sendBotTypingThenMessage("Nos produits bénéficient d'une garantie selon leur catégorie. Pour toute question de Service Après-Vente (SAV), veuillez vous rapprocher de votre magasin muni de votre devis ou facture. 🛠️");
+            this.sendBotTypingThenMessage("Nos produits bénéficient d'une garantie selon leur catégorie. Pour toute question de Service Après-Vente (SAV), veuillez vous rapprocher de votre magasin muni de votre ticket de caisse ou facture. 🛠️");
         }
         else if (normalizedInput.includes('merci') || normalizedInput.includes('super') || normalizedInput.includes('top') || normalizedInput.includes('genial')) {
             this.sendBotTypingThenMessage("C'est un plaisir ! 😊 Avez-vous besoin d'autre chose ?");
